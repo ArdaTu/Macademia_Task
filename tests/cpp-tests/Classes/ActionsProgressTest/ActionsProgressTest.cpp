@@ -86,7 +86,7 @@ void SpriteProgressToRadial::onEnter()
     left->setPosition(100, s.height/2);
     left->runAction( RepeatForever::create(to1));
     
-    auto right = ProgressTimer::create(Sprite::create(s_pathSister2));
+    auto right = ProgressTimer::create(Sprite::create(s_pathSister2)); //Changed block image to another human model
     right->setType(ProgressTimer::Type::RADIAL);
     // Makes the ridial CCW
     right->setReverseDirection(true);
