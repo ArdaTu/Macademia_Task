@@ -77,10 +77,6 @@ void SpriteProgressToRadial::onEnter()
     
     auto s = Director::getInstance()->getWinSize();
 
-	
-    
-    auto to2 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
-
     auto left = ProgressTimer::create(Sprite::create(s_pathSister1));
     left->setType( ProgressTimer::Type::RADIAL );
     addChild(left);
@@ -100,7 +96,21 @@ void SpriteProgressToRadial::onEnter()
     right->setReverseDirection(true);
     addChild(right);
     right->setPosition(s.width-100, s.height/2);
-    right->runAction( RepeatForever::create(to2));
+
+	auto to2 = Sequence::createWithTwoActions(ProgressTo::create(1, 100), ProgressTo::create(0, 0));
+	auto to2_2 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
+	auto to2_3 = Sequence::createWithTwoActions(ProgressTo::create(3, 100), ProgressTo::create(0, 0));
+	auto to2_4 = Sequence::createWithTwoActions(ProgressTo::create(4, 100), ProgressTo::create(0, 0));
+	auto to2_5 = Sequence::createWithTwoActions(ProgressTo::create(5, 100), ProgressTo::create(0, 0));
+	auto to2_6 = Sequence::createWithTwoActions(ProgressTo::create(6, 100), ProgressTo::create(0, 0));
+	auto to2_7 = Sequence::createWithTwoActions(ProgressTo::create(7, 100), ProgressTo::create(0, 0));
+	auto to2_8 = Sequence::createWithTwoActions(ProgressTo::create(8, 100), ProgressTo::create(0, 0));
+	auto to2_9 = Sequence::createWithTwoActions(ProgressTo::create(9, 100), ProgressTo::create(0, 0));
+	auto to2_10 = Sequence::createWithTwoActions(ProgressTo::create(10, 100), ProgressTo::create(0, 0));
+	auto seq_2 = Sequence::create(to2, to2_2, to2_3, to2_4, to2_5, to2_6, to2_7, to2_8, to2_9, to2_10, nullptr);
+	auto repeat_2 = RepeatForever::create(seq_2);
+	right->runAction(repeat_2); //This code block does Task-3. Should be improved with a loop for efficiency however I didn't have enough time to implement a working one.
+    
 }
 
 std::string SpriteProgressToRadial::subtitle() const
