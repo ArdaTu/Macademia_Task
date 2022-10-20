@@ -77,14 +77,22 @@ void SpriteProgressToRadial::onEnter()
     
     auto s = Director::getInstance()->getWinSize();
 
-    auto to1 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
+	
+    
     auto to2 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
 
     auto left = ProgressTimer::create(Sprite::create(s_pathSister1));
     left->setType( ProgressTimer::Type::RADIAL );
     addChild(left);
     left->setPosition(100, s.height/2);
-    left->runAction( RepeatForever::create(to1));
+	
+	auto to1 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
+	auto to1_alter = Sequence::createWithTwoActions(ProgressTo::create(1, 100), ProgressTo::create(0, 0));
+	auto seq = Sequence::create(to1, to1_alter, nullptr);
+	auto repeat = RepeatForever::create(seq);
+	left->runAction(repeat); //This code block does Task-2 by repeating seperate sequences infinitely
+	
+    
     
     auto right = ProgressTimer::create(Sprite::create(s_pathSister2)); //Changed block image to another human model
     right->setType(ProgressTimer::Type::RADIAL);
